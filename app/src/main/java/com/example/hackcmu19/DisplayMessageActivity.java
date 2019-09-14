@@ -56,11 +56,11 @@ public class DisplayMessageActivity extends AppCompatActivity {
         //Resnik: 40.442466, -79.939765
         //Gates: 40.443437, -79.944530
 
-        //double lat = Double.parseDouble(latString);
-        //double lon = Double.parseDouble(longString);
+        double lat = Double.parseDouble(latString);
+        double lon = Double.parseDouble(longString);
 
-        double lat = 40.443602;
-        double lon = -79.944484;
+        //double lat = 40.443602;
+        //double lon = -79.944484;
 
         int[] distArray = new int [10];
 
@@ -81,6 +81,12 @@ public class DisplayMessageActivity extends AppCompatActivity {
                 available.add(i);
                 times.add(waitArray[i] + distArray[i]);
             }
+        }
+        int origSize = available.size();
+        int x = 0;
+        while(available.size()<5){
+            if(!available.contains(x)&& waitArray[x]<waitMin+15)
+                available.add(x);
         }
 
         int n = times.size();
@@ -144,7 +150,7 @@ public class DisplayMessageActivity extends AppCompatActivity {
     }
 
     public void goToPage(View view) {
-        //Intent intentButton = new Intent(this, DisplayButtonActivity.class);
+        Intent intent = new Intent(this, DisplayButtonActivity.class);
         TextView t = (TextView) findViewById(R.id.eatery1_name);
         String eateryName = "";
 
@@ -186,18 +192,17 @@ public class DisplayMessageActivity extends AppCompatActivity {
         for(int i = 0; i < 10; i++){
             if(eateryName.equals(names[i]))
             {
-                goToUrl(urls[i]);
+                //goToUrl(urls[i]);
+                intent.putExtra(EXTRA_MESSAGE3, urls[i]);
                 break;
             }
         }
-
-        //intentButton.putExtra(EXTRA_MESSAGE3, eateryName);
-        //startActivity(intentButton);
+        startActivity(intent);
     }
-    public void goToUrl(String url){
+    /*public void goToUrl(String url){
         Uri uriUrl = Uri.parse(url);
         Intent launchBrowser = new Intent(Intent.ACTION_VIEW, uriUrl);
         startActivity(launchBrowser);
 
-    }
+    }*/
 }
