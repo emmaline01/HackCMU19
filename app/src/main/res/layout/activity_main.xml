@@ -98,5 +98,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
+    <TextView
+        android:id="@+id/locationText"
+        android:layout_width="357dp"
+        android:layout_height="0dp"
+        android:text="Location" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -18,6 +18,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationCallback;
+import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnSuccessListener;
 
@@ -31,6 +34,8 @@ public class MainActivity extends AppCompatActivity {
     public static final String EXTRA_LON_MESSAGE4 = "com.example.hackcmu19.LON_MESSAGE4";
     public static final int REQUEST_LOCATION_PERMISSION = 5;
     public Location lastLocation;
+    public LocationCallback mLocationCallback;
+    public static final String TAG = "MyActivity";
 
     private FusedLocationProviderClient fusedLocationClient;
 
@@ -43,6 +48,24 @@ public class MainActivity extends AppCompatActivity {
         error.setVisibility(View.INVISIBLE);
 
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
+
+        //creates a location callback object- called whenever app requests updated location
+        mLocationCallback = new LocationCallback() {
+            @Override
+            public void onLocationResult(LocationResult locationResult) {
+                lastLocation = locationResult.getLastLocation();
+
+                //write location to the log info file thing
+                Log.i(TAG, "Location: " + lastLocation.getLatitude() +
+                        " " + lastLocation.getLongitude());
+
+                TextView locationT = findViewById(R.id.locationText);
+                locationT.setText("Location: " + lastLocation.getLatitude() +
+                        " " + lastLocation.getLongitude());
+            }
+        };
+
+        getLocation();
     }
 
     //get location permission on runtime
@@ -55,7 +78,10 @@ public class MainActivity extends AppCompatActivity {
                             {Manifest.permission.ACCESS_FINE_LOCATION},
                     REQUEST_LOCATION_PERMISSION);
         } else {
-            fusedLocationClient.getLastLocation().addOnSuccessListener(
+            fusedLocationClient.requestLocationUpdates
+                    (getLocationRequest(), mLocationCallback,
+                            null /* Looper */);
+            /**fusedLocationClient.getLastLocation().addOnSuccessListener(
                     new OnSuccessListener<Location>() {
                         @Override
                         public void onSuccess(Location location) {
@@ -64,11 +90,12 @@ public class MainActivity extends AppCompatActivity {
 
                             if (location != null) {
                                 lastLocation = location;
+                                error.setText("location: " + lastLocation.getLatitude());
                             } else {
                                 error.setText("location not available");
                             }
                         }
-                    });
+                    });**/
         }
     }
 
@@ -90,6 +117,15 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    //creates a LocationRequest object
+    private LocationRequest getLocationRequest() {
+        LocationRequest locationRequest = new LocationRequest();
+        locationRequest.setInterval(10000);
+        locationRequest.setFastestInterval(5000);
+        locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
+        return locationRequest;
+    }
+
     /** Called when the user taps the ENTER button */
     public void sendMessage(View view) {
         Intent intent = new Intent(this, DisplayMessageActivity.class);
@@ -104,12 +140,12 @@ public class MainActivity extends AppCompatActivity {
         EditText secondQ = (EditText) findViewById(R.id.waitingTime);
         String secondQMsg = secondQ.getText().toString();
 
-        getLocation();
 
         if (secondQMsg.equals("") || firstQMsg.equals("")) {
             error.setVisibility(View.VISIBLE);
             return;
         }
+        getLocation();
 
         /**
         Button uc = findViewById(R.id.UCLocationButton);
