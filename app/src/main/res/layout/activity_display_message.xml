@@ -15,8 +15,7 @@
         android:layout_marginTop="100dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
-        android:text="A message"
-        android:gravity = "center"
+        android:text="Options"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -33,22 +32,40 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/secondScreenMessage">
 
-        <TextView
-            android:id="@+id/textView3"
+        <Button
+            android:id="@+id/eatery1"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:text="Eatery 2"
-            android:gravity = "center"
-            android:textSize="24sp" />
+            android:layout_height="wrap_content"
+            android:text="Au Bon Pain"
+            android:onClick="goToPage"/>
 
-        <TextView
-            android:id="@+id/textView2"
+        <Button
+            android:id="@+id/eatery2"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:gravity="center"
-            android:text="Eatery 1"
-            android:textSize="24sp" />
+            android:layout_height="wrap_content"
+            android:text="Bowl Life"
+            android:onClick="goToPage"/>
 
+        <Button
+            android:id="@+id/eatery3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Taste of India"
+            android:onClick="goToPage"/>
+
+        <Button
+            android:id="@+id/eatery4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="El Gallo de Oro"
+            android:onClick="goToPage"/>
+
+        <Button
+            android:id="@+id/eatery5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="The Underground"
+            android:onClick="goToPage"/>
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
