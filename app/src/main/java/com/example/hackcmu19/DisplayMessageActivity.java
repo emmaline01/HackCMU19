@@ -43,6 +43,17 @@ public class DisplayMessageActivity extends AppCompatActivity {
         errorView = (TextView) findViewById(R.id.error5);
         errorView.setVisibility(View.INVISIBLE);
 
+        TextView fav = (TextView) findViewById(R.id.fav1);
+        fav.setVisibility(View.INVISIBLE);
+        fav = (TextView) findViewById(R.id.fav2);
+        fav.setVisibility(View.INVISIBLE);
+        fav = (TextView) findViewById(R.id.fav3);
+        fav.setVisibility(View.INVISIBLE);
+        fav = (TextView) findViewById(R.id.fav4);
+        fav.setVisibility(View.INVISIBLE);
+        fav = (TextView) findViewById(R.id.fav5);
+        fav.setVisibility(View.INVISIBLE);
+
         // Capture the layout's TextView and set the string as its text
         TextView topLabel = findViewById(R.id.secondScreenMessage);
         topLabel.setText("Results for: walking for " + msgDistMinutes +
@@ -56,11 +67,11 @@ public class DisplayMessageActivity extends AppCompatActivity {
 
         String[] places = {"Au Bon Pain", "Back Bar Grill", "Bowl Life", "Carnegie Mellon Cafe", "El Gallo de Oro", "iNoodle", "Nakama", "Rohr Cafe",
                 "Taste of India", "The Underground"};
-        String[] locations ={"Cohon University Center","Cohon University Center","Cohon University Center","Resnik", "Cohon University Center",
+        String[] locations = {"Cohon University Center", "Cohon University Center", "Cohon University Center", "Resnik", "Cohon University Center",
                 "Newell Simon Hall", "Resnik", "Gates-Hillman Center", "Resnik", "Morewood E-Tower"};
 
-        double[] latitude = {40.443414, 40.443414, 40.443414, 40.442466, 40.443414, 40.443435,40.442466, 40.443437, 40.442466, 40.445464};
-        double[] longitude = { -79.942058,  -79.942058,  -79.942058, -79.939765, -79.942058,-79.945671, -79.939765, -79.944530, -79.939765, -79.943241};
+        double[] latitude = {40.443414, 40.443414, 40.443414, 40.442466, 40.443414, 40.443435, 40.442466, 40.443437, 40.442466, 40.445464};
+        double[] longitude = {-79.942058, -79.942058, -79.942058, -79.939765, -79.942058, -79.945671, -79.939765, -79.944530, -79.939765, -79.943241};
         //NSH: 40.443435, -79.945671
         //UC: 40.443414, -79.942058
         //underground: 40.445464, -79.943241
@@ -70,28 +81,38 @@ public class DisplayMessageActivity extends AppCompatActivity {
         double lat = Double.parseDouble(latString);
         double lon = Double.parseDouble(longString);
 
-        //double lat = 40.443602;
-        //double lon = -79.944484;
+        String[] favorites = new String[10];
+        favorites[0] = extras.getString(MainActivity.EXTRA_ABP_MESSAGE5);
+        //System.out.println(favorites[0]);
+        favorites[1] = extras.getString(MainActivity.EXTRA_BACK_BAR_MESSAGE5);
+        //System.out.println(favorites[1]);
 
-        int[] distArray = new int [10];
+        int[] distArray = new int[10];
 
-        for(int i = 0; i < 10; i++){
-            distArray[i] = Math.abs((int)((lat-latitude[i])*1500)) + Math.abs( (int) ((lon-longitude[i])*1500) );
+        for (int i = 0; i < 10; i++) {
+            distArray[i] = Math.abs((int) ((lat - latitude[i]) * 1500)) + Math.abs((int) ((lon - longitude[i]) * 1500));
         }
 
         ArrayList<Integer> available = new ArrayList<Integer>();
         ArrayList<Integer> times = new ArrayList<Integer>();
 
+        int numFavorites = 0;
         for (int i = 0; i < 10; i++) {
-            if (distArray[i] <= distMin && waitArray[i] <= waitMin) {
+            if (favorites[i] != null && !favorites[i].equals("") && distArray[i] <= distMin && waitArray[i] <= waitMin) {
+                numFavorites++;
+            }
+        }
+
+        for (int i = 0; i < 10; i++) {
+            if ((favorites[i] == null || favorites[i].equals("")) && distArray[i] <= distMin && waitArray[i] <= waitMin) {
                 available.add(i);
                 times.add(waitArray[i] + distArray[i]);
             }
         }
-        int origSize = available.size();
+        int origSize = available.size() + numFavorites;
         int x = 0;
 
-        if(origSize < 5){
+        if (origSize < 5) {
             switch (origSize) {
                 case 0:
                     errorView = (TextView) findViewById(R.id.error1);
@@ -117,8 +138,8 @@ public class DisplayMessageActivity extends AppCompatActivity {
 
         }
 
-        while(available.size()<5){
-            if(!available.contains(x)&& waitArray[x]< waitMin+15) {
+        while (available.size() < 5) {
+            if (!available.contains(x) && waitArray[x] < waitMin + 15) {
                 available.add(x);
                 times.add(waitArray[x] + distArray[x]);
             }
@@ -126,28 +147,53 @@ public class DisplayMessageActivity extends AppCompatActivity {
         }
 
         int n = times.size();
+        //if(numFavorites==0)
+        //   numFavorites=1;
+
         for (int i = 1; i < n; ++i) {
             int key = times.get(i);
             int index = available.get(i);
             int j = i - 1;
             while (j >= 0 && times.get(j) > key) {
-                available.set(j+1, available.get(j));
+                available.set(j + 1, available.get(j));
                 times.set(j + 1, times.get(j));
                 j = j - 1;
             }
             times.set(j + 1, key);
-            available.set(j+1, index);
+            available.set(j + 1, index);
+        }
+        //int num = 1;
+
+        for (int i = 0; i < 10; i++) {
+            if (favorites[i] != null && !favorites[i].equals("") && distArray[i] <= distMin && waitArray[i] <= waitMin) {
+                available.add(0, i);
+                /*switch (num) {
+                    case 1:
+                        fav = (TextView) findViewById(R.id.fav1);
+                        fav.setVisibility(View.VISIBLE);
+                        break;
+                    case 2:
+                        fav = (TextView) findViewById(R.id.fav2);
+                        fav.setVisibility(View.VISIBLE);
+                        break;
+                }
+                num++;*/
+            }
         }
 
         TextView button = (TextView) findViewById(R.id.eatery1_name);
         button.setText(places[available.get(0)]);
         button = (TextView) findViewById(R.id.eatery1_dist);
-        button.setText("Distance in minutes: "+ distArray[available.get(0)]);
+        button.setText("Distance in minutes: " + distArray[available.get(0)]);
         button = (TextView) findViewById(R.id.eatery1_time);
-        button.setText("Wait time in minutes: "+ waitArray[available.get(0)]);
+        button.setText("Wait time in minutes: " + waitArray[available.get(0)]);
         button = (TextView) findViewById(R.id.eatery1_location);
-        button.setText("Location: "+ locations[available.get(0)]);
+        button.setText("Location: " + locations[available.get(0)]);
+        if (favorites[available.get(0)] != null && !favorites[available.get(0)].equals("")){
+            fav = (TextView) findViewById(R.id.fav1);
+            fav.setVisibility(View.VISIBLE);
 
+        }
         button = (TextView) findViewById(R.id.eatery2_name);
         button.setText(places[available.get(1)]);
         button = (TextView) findViewById(R.id.eatery2_dist);
@@ -156,6 +202,11 @@ public class DisplayMessageActivity extends AppCompatActivity {
         button.setText("Wait time in minutes: "+ waitArray[available.get(1)]);
         button = (TextView) findViewById(R.id.eatery2_location);
         button.setText("Location: "+ locations[available.get(1)]);
+        if (favorites[available.get(1)] != null && !favorites[available.get(1)].equals("")){
+            fav = (TextView) findViewById(R.id.fav2);
+            fav.setVisibility(View.VISIBLE);
+
+        }
 
         button =  (TextView)findViewById(R.id.eatery3_name);
         button.setText(places[available.get(2)]);
@@ -165,6 +216,11 @@ public class DisplayMessageActivity extends AppCompatActivity {
         button.setText("Wait time in minutes: "+ waitArray[available.get(2)]);
         button = (TextView) findViewById(R.id.eatery3_location);
         button.setText("Location: "+ locations[available.get(2)]);
+        if (favorites[available.get(2)] != null && !favorites[available.get(2)].equals("")){
+            fav = (TextView) findViewById(R.id.fav3);
+            fav.setVisibility(View.VISIBLE);
+
+        }
 
         button = (TextView)findViewById(R.id.eatery4_name);
         button.setText(places[available.get(3)]);
@@ -174,6 +230,11 @@ public class DisplayMessageActivity extends AppCompatActivity {
         button.setText("Wait time in minutes: "+ waitArray[available.get(3)]);
         button = (TextView) findViewById(R.id.eatery4_location);
         button.setText("Location: "+ locations[available.get(3)]);
+        if (favorites[available.get(3)] != null && !favorites[available.get(3)].equals("")){
+            fav = (TextView) findViewById(R.id.fav4);
+            fav.setVisibility(View.VISIBLE);
+
+        }
 
         button = (TextView)findViewById(R.id.eatery5_name);
         button.setText(places[available.get(4)]);
@@ -183,6 +244,11 @@ public class DisplayMessageActivity extends AppCompatActivity {
         button.setText("Wait time in minutes: "+ waitArray[available.get(4)]);
         button = (TextView) findViewById(R.id.eatery5_location);
         button.setText("Location: "+ locations[available.get(4)]);
+        if (favorites[available.get(4)] != null && !favorites[available.get(4)].equals("")){
+            fav = (TextView) findViewById(R.id.fav4);
+            fav.setVisibility(View.VISIBLE);
+
+        }
     }
 
     public void goToPage(View view) {

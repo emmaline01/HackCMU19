@@ -25,7 +25,7 @@
     <LinearLayout
         android:id="@+id/eatery1"
         android:layout_width="500dp"
-        android:layout_height="115dp"
+        android:layout_height="125dp"
         android:orientation="vertical"
         android:onClick="goToPage"
         app:layout_constraintEnd_toEndOf="parent"
@@ -69,12 +69,21 @@
             android:text="Location: Cohon University Center "
             android:textSize="12sp"/>
 
+        <TextView
+            android:id="@+id/fav1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="**Favorite**"
+            android:textSize="12sp"
+            android:textColor="#AA1"
+            android:gravity="center"/>
+
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/eatery2"
         android:layout_width="0dp"
-        android:layout_height="115dp"
+        android:layout_height="125dp"
         android:orientation="vertical"
         android:onClick="goToPage"
         app:layout_constraintEnd_toEndOf="parent"
@@ -118,13 +127,21 @@
             android:layout_height="wrap_content"
             android:text="Location: Cohon University Center "
             android:textSize="12sp" />
+        <TextView
+            android:id="@+id/fav2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="**Favorite**"
+            android:textSize="12sp"
+            android:textColor="#AA1"
+            android:gravity="center"/>
 
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/eatery3"
         android:layout_width="0dp"
-        android:layout_height="115dp"
+        android:layout_height="125dp"
         android:orientation="vertical"
         android:onClick="goToPage"
         app:layout_constraintEnd_toEndOf="parent"
@@ -168,13 +185,21 @@
             android:layout_height="wrap_content"
             android:text="Location: Cohon University Center "
             android:textSize="12sp" />
+        <TextView
+            android:id="@+id/fav3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="**Favorite**"
+            android:textSize="12sp"
+            android:textColor="#AA1"
+            android:gravity="center"/>
 
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/eatery4"
         android:layout_width="0dp"
-        android:layout_height="115dp"
+        android:layout_height="125dp"
         android:orientation="vertical"
         android:onClick="goToPage"
         app:layout_constraintEnd_toEndOf="parent"
@@ -218,13 +243,21 @@
             android:layout_height="wrap_content"
             android:text="Location: Cohon University Center "
             android:textSize="12sp" />
+        <TextView
+            android:id="@+id/fav4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="**Favorite**"
+            android:textSize="12sp"
+            android:textColor="#AA1"
+            android:gravity="center"/>
 
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/eatery5"
         android:layout_width="0dp"
-        android:layout_height="115dp"
+        android:layout_height="125dp"
         android:orientation="vertical"
         android:onClick="goToPage"
         app:layout_constraintEnd_toEndOf="parent"
@@ -268,6 +301,14 @@
             android:layout_height="wrap_content"
             android:text="Location: Cohon University Center "
             android:textSize="12sp" />
+        <TextView
+            android:id="@+id/fav5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="**Favorite**"
+            android:textSize="12sp"
+            android:textColor="#AA1"
+            android:gravity="center"/>
 
     </LinearLayout>
 
