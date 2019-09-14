@@ -9,15 +9,13 @@
     <TextView
         android:id="@+id/secondScreenMessage"
         android:layout_width="wrap_content"
-        android:layout_height="100dp"
+        android:layout_height="70dp"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="50dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
         android:text="Options"
-        android:gravity="center"
-        android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -27,7 +25,7 @@
     <LinearLayout
         android:id="@+id/eatery1"
         android:layout_width="500dp"
-        android:layout_height="100dp"
+        android:layout_height="115dp"
         android:orientation="vertical"
         android:onClick="goToPage"
         app:layout_constraintEnd_toEndOf="parent"
@@ -35,6 +33,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/secondScreenMessage">
 
+        <TextView
+            android:id="@+id/error1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="No other locations met your criteria. Here are some other options"
+            android:textSize="12sp"
+            android:textColor="#F00"
+            android:gravity="center"/>
         <TextView
             android:id="@+id/eatery1_name"
             android:layout_width="wrap_content"
@@ -61,20 +67,29 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Location: Cohon University Center "
-            android:textSize="12sp" />
+            android:textSize="12sp"/>
 
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/eatery2"
         android:layout_width="0dp"
-        android:layout_height="100dp"
+        android:layout_height="115dp"
         android:orientation="vertical"
         android:onClick="goToPage"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/eatery1">
+
+        <TextView
+            android:id="@+id/error2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="No other locations met your criteria. Here are some other options"
+            android:textSize="12sp"
+            android:textColor="#F00"
+            android:gravity="center" />
 
         <TextView
             android:id="@+id/eatery2_name"
@@ -105,16 +120,26 @@
             android:textSize="12sp" />
 
     </LinearLayout>
+
     <LinearLayout
         android:id="@+id/eatery3"
         android:layout_width="0dp"
-        android:layout_height="100dp"
+        android:layout_height="115dp"
         android:orientation="vertical"
         android:onClick="goToPage"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/eatery2">
+
+        <TextView
+            android:id="@+id/error3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="No other locations met your criteria. Here are some other options"
+            android:textSize="12sp"
+            android:textColor="#F00"
+            android:gravity="center" />
 
         <TextView
             android:id="@+id/eatery3_name"
@@ -145,16 +170,26 @@
             android:textSize="12sp" />
 
     </LinearLayout>
+
     <LinearLayout
         android:id="@+id/eatery4"
         android:layout_width="0dp"
-        android:layout_height="100dp"
+        android:layout_height="115dp"
         android:orientation="vertical"
         android:onClick="goToPage"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/eatery3">
+
+        <TextView
+            android:id="@+id/error4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="No other locations met your criteria. Here are some other options"
+            android:textSize="12sp"
+            android:textColor="#F00"
+            android:gravity="center" />
 
         <TextView
             android:id="@+id/eatery4_name"
@@ -185,16 +220,26 @@
             android:textSize="12sp" />
 
     </LinearLayout>
+
     <LinearLayout
         android:id="@+id/eatery5"
         android:layout_width="0dp"
-        android:layout_height="100dp"
+        android:layout_height="115dp"
         android:orientation="vertical"
         android:onClick="goToPage"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/eatery4">
+
+        <TextView
+            android:id="@+id/error5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="No other locations met your criteria. Here are some other options"
+            android:textSize="12sp"
+            android:textColor="#F00"
+            android:gravity="center" />
 
         <TextView
             android:id="@+id/eatery5_name"
@@ -225,5 +270,6 @@
             android:textSize="12sp" />
 
     </LinearLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

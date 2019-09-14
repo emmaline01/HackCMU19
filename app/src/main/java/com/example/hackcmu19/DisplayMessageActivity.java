@@ -32,6 +32,17 @@ public class DisplayMessageActivity extends AppCompatActivity {
         String latString = extras.getString(MainActivity.EXTRA_LAT_MESSAGE4);
         String longString = extras.getString(MainActivity.EXTRA_LON_MESSAGE4);
 
+        TextView errorView = (TextView) findViewById(R.id.error1);
+        errorView.setVisibility(View.INVISIBLE);
+        errorView = (TextView) findViewById(R.id.error2);
+        errorView.setVisibility(View.INVISIBLE);
+        errorView = (TextView) findViewById(R.id.error3);
+        errorView.setVisibility(View.INVISIBLE);
+        errorView = (TextView) findViewById(R.id.error4);
+        errorView.setVisibility(View.INVISIBLE);
+        errorView = (TextView) findViewById(R.id.error5);
+        errorView.setVisibility(View.INVISIBLE);
+
         // Capture the layout's TextView and set the string as its text
         TextView topLabel = findViewById(R.id.secondScreenMessage);
         topLabel.setText("Results for: walking for " + msgDistMinutes +
@@ -80,11 +91,38 @@ public class DisplayMessageActivity extends AppCompatActivity {
         int origSize = available.size();
         int x = 0;
 
+        if(origSize < 5){
+            switch (origSize) {
+                case 0:
+                    errorView = (TextView) findViewById(R.id.error1);
+                    errorView.setVisibility(View.VISIBLE);
+                    break;
+                case 1:
+                    errorView = (TextView) findViewById(R.id.error2);
+                    errorView.setVisibility(View.VISIBLE);
+                    break;
+                case 2:
+                    errorView = (TextView) findViewById(R.id.error3);
+                    errorView.setVisibility(View.VISIBLE);
+                    break;
+                case 3:
+                    errorView = (TextView) findViewById(R.id.error4);
+                    errorView.setVisibility(View.VISIBLE);
+                    break;
+                case 4:
+                    errorView = (TextView) findViewById(R.id.error5);
+                    errorView.setVisibility(View.VISIBLE);
+                    break;
+            }
+
+        }
+
         while(available.size()<5){
             if(!available.contains(x)&& waitArray[x]< waitMin+15) {
                 available.add(x);
                 times.add(waitArray[x] + distArray[x]);
             }
+            x++;
         }
 
         int n = times.size();
