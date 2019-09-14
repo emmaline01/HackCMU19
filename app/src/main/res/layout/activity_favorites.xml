@@ -58,6 +58,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="#FFFFFF"
+                android:onClick="BowlLifeButtonHit"
                 android:text="Bowl Life" />
 
             <Button
