@@ -53,19 +53,6 @@
             android:text="Taste of India"
             android:onClick="goToPage"/>
 
-        <Button
-            android:id="@+id/eatery4"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="El Gallo de Oro"
-            android:onClick="goToPage"/>
-
-        <Button
-            android:id="@+id/eatery5"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="The Underground"
-            android:onClick="goToPage"/>
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
