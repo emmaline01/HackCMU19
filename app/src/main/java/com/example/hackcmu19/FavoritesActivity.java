@@ -46,22 +46,21 @@ public class FavoritesActivity extends AppCompatActivity {
         }
     }
 
-    public void faveButtonHit(View v, Button b){
+    public void faveButtonHit(View v, Button b) {
         SharedPreferences.Editor editor = sharedPreferences.edit();
         Button[] buttons = {ABPbutton, BackBarGrillButton, BowlLifeButton};
 
-        for (int i = 0; i < buttons.length; i++){
+        for (int i = 0; i < buttons.length; i++) {
             //if button is already hit
-            if (b.getId() == buttons[i].getId()){
+            if (b.getId() == buttons[i].getId()) {
                 if (((ColorDrawable) buttons[i].getBackground()).getColor() !=
                         Color.parseColor("#b8b8b8")) {
                     buttons[i].setBackgroundColor(Color.parseColor("#b8b8b8"));
                     editor.putBoolean(keys[i], true);
-                }
-                else {
+                } else {
                     //if it is already grayed out, make it white
                     buttons[i].setBackgroundColor(Color.parseColor("#ffffff"));
-                    editor.putBoolean(keys[i],false);
+                    editor.putBoolean(keys[i], false);
                 }
                 editor.commit();
             }
