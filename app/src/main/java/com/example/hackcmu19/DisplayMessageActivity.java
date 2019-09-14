@@ -15,10 +15,14 @@ public class DisplayMessageActivity extends AppCompatActivity {
 
         // Get the Intent that started this activity and extract the string
         Intent intent = getIntent();
-        String message = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
+        Bundle extras = intent.getExtras();
+
+        String msgDistMinutes = extras.getString(MainActivity.EXTRA_MESSAGE);
+        String msgWaitingMinutes = extras.getString(MainActivity.EXTRA_MESSAGE2);
 
         // Capture the layout's TextView and set the string as its text
-        TextView textView = findViewById(R.id.secondScreenMessage);
-        textView.setText(message);
+        TextView topLabel = findViewById(R.id.secondScreenMessage);
+        topLabel.setText("You entered: walking for " + msgDistMinutes +
+                "min and waiting for " + msgWaitingMinutes + "min");
     }
 }
