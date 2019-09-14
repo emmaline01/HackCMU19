@@ -137,13 +137,17 @@ public class DisplayMessageActivity extends AppCompatActivity {
             }
 
         }
-
+        int increment = 5;
         while (available.size() < 5) {
-            if (!available.contains(x) && waitArray[x] < waitMin + 15) {
+            if (!available.contains(x) && waitArray[x] < waitMin + increment) {
                 available.add(x);
                 times.add(waitArray[x] + distArray[x]);
             }
             x++;
+            if(x == 10) {
+                x = 0;
+                increment+=5;
+            }
         }
 
         int n = times.size();
