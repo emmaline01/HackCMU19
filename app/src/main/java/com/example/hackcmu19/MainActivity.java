@@ -1,15 +1,25 @@
 package com.example.hackcmu19;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.location.Location;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.tasks.OnSuccessListener;
 
 import static android.graphics.Color.*;
 
@@ -17,6 +27,13 @@ public class MainActivity extends AppCompatActivity {
     public static final String EXTRA_MESSAGE = "com.example.hackcmu19.MESSAGE";
     public static final String EXTRA_MESSAGE2 = "com.example.hackcmu19.MESSAGE2";
     public static final String EXTRA_MESSAGE3 = "com.example.hackcmu19.MESSAGE3";
+    public static final String EXTRA_LAT_MESSAGE4 = "com.example.hackcmu19.LAT_MESSAGE4";
+    public static final String EXTRA_LON_MESSAGE4 = "com.example.hackcmu19.LON_MESSAGE4";
+    public static final int REQUEST_LOCATION_PERMISSION = 5;
+    public Location lastLocation;
+
+    private FusedLocationProviderClient fusedLocationClient;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,6 +41,53 @@ public class MainActivity extends AppCompatActivity {
 
         TextView error = findViewById(R.id.errorMsg);
         error.setVisibility(View.INVISIBLE);
+
+        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
+    }
+
+    //get location permission on runtime
+    private void getLocation() {
+
+        if (ActivityCompat.checkSelfPermission(this,
+                Manifest.permission.ACCESS_FINE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]
+                            {Manifest.permission.ACCESS_FINE_LOCATION},
+                    REQUEST_LOCATION_PERMISSION);
+        } else {
+            fusedLocationClient.getLastLocation().addOnSuccessListener(
+                    new OnSuccessListener<Location>() {
+                        @Override
+                        public void onSuccess(Location location) {
+                            TextView error = findViewById(R.id.errorMsg);
+                            error.setVisibility(View.VISIBLE);
+
+                            if (location != null) {
+                                lastLocation = location;
+                            } else {
+                                error.setText("location not available");
+                            }
+                        }
+                    });
+        }
+    }
+
+    //get runtime permissions?
+    @Override
+    public void onRequestPermissionsResult(int requestCode,
+                                           @NonNull String[] permissions, @NonNull int[] grantResults) {
+        switch (requestCode) {
+            case REQUEST_LOCATION_PERMISSION:
+                // If the permission is granted, get the location,
+                // otherwise, write a message to the log
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    getLocation();
+                } else {
+                    Log.d("HackCMU19", "location permission denied");
+                }
+                break;
+        }
     }
 
     /** Called when the user taps the ENTER button */
@@ -39,12 +103,15 @@ public class MainActivity extends AppCompatActivity {
 
         EditText secondQ = (EditText) findViewById(R.id.waitingTime);
         String secondQMsg = secondQ.getText().toString();
-        System.out.println(secondQMsg + " " + firstQMsg);
+
+        getLocation();
+
         if (secondQMsg.equals("") || firstQMsg.equals("")) {
             error.setVisibility(View.VISIBLE);
             return;
         }
 
+        /**
         Button uc = findViewById(R.id.UCLocationButton);
         Button gates = findViewById(R.id.GatesLocationButton);
         String thirdQMsg = "";
@@ -63,16 +130,19 @@ public class MainActivity extends AppCompatActivity {
             error.setVisibility(View.VISIBLE);
             return;
         }
+        **/
 
         extras.putString(EXTRA_MESSAGE, firstQMsg);
         extras.putString(EXTRA_MESSAGE2, secondQMsg);
-        extras.putString(EXTRA_MESSAGE3, thirdQMsg);
+        extras.putString(EXTRA_LAT_MESSAGE4, Double.toString(lastLocation.getLatitude()));
+        extras.putString(EXTRA_LON_MESSAGE4, Double.toString(lastLocation.getLongitude()));
+        //extras.putString(EXTRA_MESSAGE3, thirdQMsg);
 
         intent.putExtras(extras);
 
         startActivity(intent);
     }
-
+    /**
     public void locationButtonHit(View view, Button b) {
         Button uc = findViewById(R.id.UCLocationButton);
         Button gates = findViewById(R.id.GatesLocationButton);
@@ -107,7 +177,7 @@ public class MainActivity extends AppCompatActivity {
     public void CFAButtonHit(View view) {
         Button cfa = findViewById(R.id.CFALocationButton);
         locationButtonHit(view, cfa);
-    }
+    }**/
 
         //this is NOT called when the button is pushed but it changes the label text
     public void inputText(View v) {
