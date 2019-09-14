@@ -73,36 +73,40 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void locationButtonHit(View view, Button b) {
+        Button uc = findViewById(R.id.UCLocationButton);
+        Button gates = findViewById(R.id.GatesLocationButton);
+        Button cfa = findViewById(R.id.CFALocationButton);
+
+        Button[] locations = {uc, gates, cfa};
+
+        if (((ColorDrawable) b.getBackground()).getColor() ==
+                Color.parseColor("#34c3eb")) {
+            b.setBackgroundColor(Color.parseColor("#00FFFFFF"));
+        }
+        else{
+            for (int i = 0; i < locations.length; i++){
+                if (b.getId() != locations[i].getId() &&
+                        ((ColorDrawable) locations[i].getBackground()).getColor() ==
+                        Color.parseColor("#34c3eb")) {
+                    return;
+                }
+            }
+            b.setBackgroundColor(Color.parseColor("#34c3eb"));
+        }
+    }
+
     public void UCButtonHit(View view){
         Button uc = findViewById(R.id.UCLocationButton);
-        Button gates = findViewById(R.id.GatesLocationButton);
-
-        //turn color back if clicked again
-        if (((ColorDrawable) uc.getBackground()).getColor() ==
-                Color.parseColor("#34c3eb")) {
-            uc.setBackgroundColor(Color.parseColor("#00FFFFFF"));
-        }
-        // only change the color if the other button isn't already pressed
-        else if (((ColorDrawable) gates.getBackground()).getColor() ==
-                Color.parseColor("#00FFFFFF") ) {
-            uc.setBackgroundColor(Color.parseColor("#34c3eb"));
-        }
-
+        locationButtonHit(view, uc);
     }
     public void gatesButtonHit(View view) {
-        Button uc = findViewById(R.id.UCLocationButton);
         Button gates = findViewById(R.id.GatesLocationButton);
-
-        //turn color back if clicked again
-        if (((ColorDrawable) gates.getBackground()).getColor() ==
-                Color.parseColor("#34c3eb") ) {
-            gates.setBackgroundColor(Color.parseColor("#00FFFFFF"));
-        }
-        else if (((ColorDrawable) uc.getBackground()).getColor() ==
-                Color.parseColor("#00FFFFFF") ) {
-            gates.setBackgroundColor(Color.parseColor("#34c3eb"));
-        }
-
+        locationButtonHit(view, gates);
+    }
+    public void CFAButtonHit(View view) {
+        Button cfa = findViewById(R.id.CFALocationButton);
+        locationButtonHit(view, cfa);
     }
 
         //this is NOT called when the button is pushed but it changes the label text
