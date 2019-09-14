@@ -147,27 +147,6 @@ public class MainActivity extends AppCompatActivity {
         }
         getLocation();
 
-        /**
-        Button uc = findViewById(R.id.UCLocationButton);
-        Button gates = findViewById(R.id.GatesLocationButton);
-        String thirdQMsg = "";
-        if (((ColorDrawable) uc.getBackground()).getColor() ==
-                Color.parseColor("#34c3eb")){
-            //if the uc was clicked
-            thirdQMsg = "UC";
-        }
-        else if (((ColorDrawable) gates.getBackground()).getColor() ==
-                Color.parseColor("#34c3eb")) {
-            //if gates was clicked
-            thirdQMsg = "Gates";
-        }
-        else {
-            //fail
-            error.setVisibility(View.VISIBLE);
-            return;
-        }
-        **/
-
         extras.putString(EXTRA_MESSAGE, firstQMsg);
         extras.putString(EXTRA_MESSAGE2, secondQMsg);
         extras.putString(EXTRA_LAT_MESSAGE4, Double.toString(lastLocation.getLatitude()));

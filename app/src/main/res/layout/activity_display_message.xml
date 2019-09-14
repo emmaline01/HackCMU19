@@ -9,7 +9,7 @@
     <TextView
         android:id="@+id/secondScreenMessage"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="100dp"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="100dp"
@@ -22,36 +22,206 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+
     <LinearLayout
-        android:layout_width="411dp"
-        android:layout_height="558dp"
-        android:layout_marginTop="40dp"
+        android:id="@+id/eatery1"
+        android:layout_width="500dp"
+        android:layout_height="100dp"
         android:orientation="vertical"
+        android:onClick="goToPage"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/secondScreenMessage">
 
-        <Button
-            android:id="@+id/eatery1"
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/eatery1_name"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Au Bon Pain"
-            android:onClick="goToPage"/>
+            android:textSize="20sp" />
 
-        <Button
-            android:id="@+id/eatery2"
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/eatery1_dist"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Bowl Life"
-            android:onClick="goToPage"/>
+            android:text="Distance in minutes: "
+            android:textSize="12sp" />
 
-        <Button
-            android:id="@+id/eatery3"
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/eatery1_time"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Taste of India"
-            android:onClick="goToPage"/>
+            android:text="Wait time in minutes: "
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/eatery1_location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Location: Cohon University Center "
+            android:textSize="12sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/eatery2"
+        android:layout_width="0dp"
+        android:layout_height="100dp"
+        android:orientation="vertical"
+        android:onClick="goToPage"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/eatery1">
+
+        <TextView
+            android:id="@+id/eatery2_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Au Bon Pain"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/eatery2_dist"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Distance in minutes: "
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/eatery2_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Wait time in minutes: "
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/eatery2_location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Location: Cohon University Center "
+            android:textSize="12sp" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/eatery3"
+        android:layout_width="0dp"
+        android:layout_height="100dp"
+        android:orientation="vertical"
+        android:onClick="goToPage"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/eatery2">
+
+        <TextView
+            android:id="@+id/eatery3_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Au Bon Pain"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/eatery3_dist"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Distance in minutes: "
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/eatery3_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Wait time in minutes: "
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/eatery3_location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Location: Cohon University Center "
+            android:textSize="12sp" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/eatery4"
+        android:layout_width="0dp"
+        android:layout_height="100dp"
+        android:orientation="vertical"
+        android:onClick="goToPage"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/eatery3">
+
+        <TextView
+            android:id="@+id/eatery4_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Au Bon Pain"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/eatery4_dist"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Distance in minutes: "
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/eatery4_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Wait time in minutes: "
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/eatery4_location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Location: Cohon University Center "
+            android:textSize="12sp" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/eatery5"
+        android:layout_width="0dp"
+        android:layout_height="100dp"
+        android:orientation="vertical"
+        android:onClick="goToPage"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/eatery4">
+
+        <TextView
+            android:id="@+id/eatery5_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="`@string`"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/eatery5_dist"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Distance in minutes: "
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/eatery5_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Wait time in minutes: "
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/eatery5_location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Location: Cohon University Center "
+            android:textSize="12sp" />
 
     </LinearLayout>
 
