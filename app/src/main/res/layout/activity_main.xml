@@ -36,6 +36,7 @@
         android:id="@+id/button"
         android:layout_width="92dp"
         android:layout_height="47dp"
+        android:background="#2196F3"
         android:onClick="sendMessage"
         android:text="Enter"
         app:layout_constraintBottom_toBottomOf="parent"
