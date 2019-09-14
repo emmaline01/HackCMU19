@@ -22,6 +22,7 @@ public class DisplayMessageActivity extends AppCompatActivity{
 
         String msgDistMinutes = extras.getString(MainActivity.EXTRA_MESSAGE);
         String msgWaitingMinutes = extras.getString(MainActivity.EXTRA_MESSAGE2);
+        String currLocation = extras.getString(MainActivity.EXTRA_MESSAGE3);
 
         // Capture the layout's TextView and set the string as its text
         TextView topLabel = findViewById(R.id.secondScreenMessage);
