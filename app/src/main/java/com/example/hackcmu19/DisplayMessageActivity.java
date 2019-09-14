@@ -68,11 +68,6 @@ public class DisplayMessageActivity extends AppCompatActivity {
             distArray[i] = Math.abs((int)((lat-latitude[i])*1500)) + Math.abs( (int) ((lon-longitude[i])*1500) );
         }
 
-        System.out.println("Distance");
-        for(int i =0; i < 10; i++) {
-            System.out.println(places[i] +" " + distArray[i]);
-        }
-
         ArrayList<Integer> available = new ArrayList<Integer>();
         ArrayList<Integer> times = new ArrayList<Integer>();
 
@@ -84,9 +79,12 @@ public class DisplayMessageActivity extends AppCompatActivity {
         }
         int origSize = available.size();
         int x = 0;
+
         while(available.size()<5){
-            if(!available.contains(x)&& waitArray[x]<waitMin+15)
+            if(!available.contains(x)&& waitArray[x]< waitMin+15) {
                 available.add(x);
+                times.add(waitArray[x] + distArray[x]);
+            }
         }
 
         int n = times.size();
