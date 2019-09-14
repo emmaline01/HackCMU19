@@ -34,7 +34,7 @@ public class DisplayMessageActivity extends AppCompatActivity {
 
         // Capture the layout's TextView and set the string as its text
         TextView topLabel = findViewById(R.id.secondScreenMessage);
-        topLabel.setText("You entered: walking for " + msgDistMinutes +
+        topLabel.setText("Results for: walking for " + msgDistMinutes +
                 " min and waiting for " + msgWaitingMinutes + " min");
 
         int distMin = Integer.parseInt(msgDistMinutes);
