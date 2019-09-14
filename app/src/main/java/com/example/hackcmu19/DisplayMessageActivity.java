@@ -272,7 +272,6 @@ public class DisplayMessageActivity extends AppCompatActivity {
             case R.id.eatery5:
                 t = (TextView) findViewById(R.id.eatery5_name);
                 break;
-
         }
         //b = (Button) findViewById(view.getId());
         eateryName = t.getText().toString();
