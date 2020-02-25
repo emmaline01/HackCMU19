@@ -63,15 +63,15 @@ public class DisplayMessageActivity extends AppCompatActivity {
         int waitMin = Integer.parseInt(msgWaitingMinutes);
 
         //au bon pain, back bar grill, bowl life, carnegie mellon cafe, el gallo de oro, inoodle, nakama, rohr cafe (gates), taste of india, the underground
-        int[] waitArray = {40, 20, 40, 20, 20, 5, 5, 10, 5, 15};
+        int[] waitArray = {40, 20, 40, 30, 5, 5, 20, 30, 5, 5, 5, 5, 15, 10,5,5, 5, 15,5};
 
-        String[] places = {"Au Bon Pain", "Back Bar Grill", "Bowl Life", "Carnegie Mellon Cafe", "El Gallo de Oro", "iNoodle", "Nakama", "Rohr Cafe",
-                "Taste of India", "The Underground"};
-        String[] locations = {"Cohon University Center", "Cohon University Center", "Cohon University Center", "Resnik", "Cohon University Center",
-                "Newell Simon Hall", "Resnik", "Gates-Hillman Center", "Resnik", "Morewood E-Tower"};
+        String[] places = {"Au Bon Pain", "Back Bar Grill", "Bowl Life", "Carnegie Mellon Cafe", "Create," "Cucina," "El Gallo de Oro", "Inovation Kitchen", "iNoodle", "Maggie Murph Cafe", "Nakama", "Nourish", "Realwich", "Rohr Cafe", "Rooted",
+                "Tartan Express", "Taste of India", "The Underground", "Urban Revolution"};
+        String[] locations = {"Cohon University Center", "Cohon University Center", "Cohon University Center", "Resnik",  "Cohon University Center","Resnik" "Cohon University Center", "Resnik",
+                "Newell Simon Hall", "Hunt Library", "Resnik", "Cohon University Center", "Cohon University Center", "Gates-Hillman Center",  "Cohon University Center", "Cohon University Center","Resnik", "Morewood E-Tower"};
 
-        double[] latitude = {40.443414, 40.443414, 40.443414, 40.442466, 40.443414, 40.443435, 40.442466, 40.443437, 40.442466, 40.445464};
-        double[] longitude = {-79.942058, -79.942058, -79.942058, -79.939765, -79.942058, -79.945671, -79.939765, -79.944530, -79.939765, -79.943241};
+        double[] latitude = {40.443414, 40.443414, 40.443414, 40.442466, 40.443414, 40.442466, 40.443414, 40.442466, 40.443435, 40.442466, 40.442466, 40.443414, 40.443414, 40.443437,40.443414, 40.443414, 40.442466, 40.445464,40.442466};
+        double[] longitude = {-79.942058, -79.942058, -79.942058, -79.939765, -79.942058,-79.939765,-79.942058, -79.939765, -79.945671,-79.939765, -79.939765, -79.942058, -79.942058, -79.944530, -79.942058, -79.939765, -79.943241, -79.939765};
         //NSH: 40.443435, -79.945671
         //UC: 40.443414, -79.942058
         //underground: 40.445464, -79.943241
@@ -81,15 +81,15 @@ public class DisplayMessageActivity extends AppCompatActivity {
         double lat = Double.parseDouble(latString);
         double lon = Double.parseDouble(longString);
 
-        String[] favorites = new String[10];
+        String[] favorites = new String[19];
         favorites[0] = extras.getString(MainActivity.EXTRA_ABP_MESSAGE5);
         //System.out.println(favorites[0]);
         favorites[1] = extras.getString(MainActivity.EXTRA_BACK_BAR_MESSAGE5);
         //System.out.println(favorites[1]);
 
-        int[] distArray = new int[10];
+        int[] distArray = new int[19];
 
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 19; i++) {
             distArray[i] = Math.abs((int) ((lat - latitude[i]) * 1500)) + Math.abs((int) ((lon - longitude[i]) * 1500));
         }
 
@@ -97,13 +97,13 @@ public class DisplayMessageActivity extends AppCompatActivity {
         ArrayList<Integer> times = new ArrayList<Integer>();
 
         int numFavorites = 0;
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 19; i++) {
             if (favorites[i] != null && !favorites[i].equals("") && distArray[i] <= distMin && waitArray[i] <= waitMin) {
                 numFavorites++;
             }
         }
 
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 19; i++) {
             if ((favorites[i] == null || favorites[i].equals("")) && distArray[i] <= distMin && waitArray[i] <= waitMin) {
                 available.add(i);
                 times.add(waitArray[i] + distArray[i]);
@@ -168,7 +168,7 @@ public class DisplayMessageActivity extends AppCompatActivity {
         }
         //int num = 1;
 
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 19; i++) {
             if (favorites[i] != null && !favorites[i].equals("") && distArray[i] <= distMin && waitArray[i] <= waitMin) {
                 available.add(0, i);
                 /*switch (num) {
@@ -280,21 +280,30 @@ public class DisplayMessageActivity extends AppCompatActivity {
         //b = (Button) findViewById(view.getId());
         eateryName = t.getText().toString();
 
-        String[] names = {"Au Bon Pain", "Back Bar Grill", "Bowl Life", "Carnegie Mellon Cafe", "El Gallo de Oro", "iNoodle", "Nakama", "Rohr Cafe",
-                "Taste of India", "The Underground"};
+        String[] names = {"Au Bon Pain", "Back Bar Grill", "Bowl Life", "Carnegie Mellon Cafe", "Create," "Cucina," "El Gallo de Oro", "Inovation Kitchen", "iNoodle", "Maggie Murph Cafe", "Nakama", "Nourish", "Realwich", "Rohr Cafe", "Rooted",
+                "Tartan Express", "Taste of India", "The Underground", "Urban Revolution"};
 
         String[] urls = {"https://apps.studentaffairs.cmu.edu/dining/conceptinfo/?page=conceptDetails&conceptId=113",
                 "https://apps.studentaffairs.cmu.edu/dining/conceptinfo/?page=conceptDetails&conceptId=138",
                 "https://apps.studentaffairs.cmu.edu/dining/conceptinfo/?page=conceptDetails&conceptId=142",
                 "https://apps.studentaffairs.cmu.edu/dining/conceptinfo/?page=conceptDetails&conceptId=88",
+                "https://apps.studentaffairs.cmu.edu/dining/conceptinfo/?page=conceptDetails&conceptId=140",
+                "https://apps.studentaffairs.cmu.edu/dining/conceptinfo/?page=conceptDetails&conceptId=144",
                 "https://apps.studentaffairs.cmu.edu/dining/conceptinfo/?page=conceptDetails&conceptId=91",
+                "https://apps.studentaffairs.cmu.edu/dining/conceptinfo/?page=conceptDetails&conceptId=147",
                 "https://apps.studentaffairs.cmu.edu/dining/conceptinfo/?page=conceptDetails&conceptId=110",
+                "https://apps.studentaffairs.cmu.edu/dining/conceptinfo/?page=conceptDetails&conceptId=95",
                 "https://apps.studentaffairs.cmu.edu/dining/conceptinfo/?page=conceptDetails&conceptId=97",
+                "https://apps.studentaffairs.cmu.edu/dining/conceptinfo/?page=conceptDetails&conceptId=127",
+                "https://apps.studentaffairs.cmu.edu/dining/conceptinfo/?page=conceptDetails&conceptId=143",
                 "https://apps.studentaffairs.cmu.edu/dining/conceptinfo/?page=conceptDetails&conceptId=115",
+                "https://apps.studentaffairs.cmu.edu/dining/conceptinfo/?page=conceptDetails&conceptId=141",
+                "https://apps.studentaffairs.cmu.edu/dining/conceptinfo/?page=conceptDetails&conceptId=82",
                 "https://apps.studentaffairs.cmu.edu/dining/conceptinfo/?page=conceptDetails&conceptId=114",
-                "https://apps.studentaffairs.cmu.edu/dining/conceptinfo/?page=conceptDetails&conceptId=112"};
+                "https://apps.studentaffairs.cmu.edu/dining/conceptinfo/?page=conceptDetails&conceptId=112",
+                "https://apps.studentaffairs.cmu.edu/dining/conceptinfo/?page=conceptDetails&conceptId=146"};
 
-        for(int i = 0; i < 10; i++){
+        for(int i = 0; i < 19; i++){
             if(eateryName.equals(names[i]))
             {
                 //goToUrl(urls[i]);
